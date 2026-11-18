@@ -6,6 +6,7 @@ on:
     paths:
       - 'Masterme4a-M4-friends-source.zip'
       - '.github/workflows/build.yml'
+      - '.github/scripts/fix_forge_compat.py'
   workflow_dispatch:
 
 permissions:
@@ -24,6 +25,8 @@ jobs:
         run: |
           mkdir source
           unzip Masterme4a-M4-friends-source.zip -d source
+      - name: Apply Forge 1.17.1 compatibility fixes
+        run: python3 .github/scripts/fix_forge_compat.py
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
